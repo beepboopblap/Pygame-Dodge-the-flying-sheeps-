@@ -9,3 +9,7 @@ Created with the help of Mr Baumgarten's youtube playlist on games programming w
 Playlist: https://youtube.com/playlist?list=PLM-syYolLbsz5paY9gafMzMpWgv-h4ac6
 
 Channel: https://www.youtube.com/user/pbaumgarten
+
+***UPDATES***
+
+Feb 20 - Added borders and instructions
