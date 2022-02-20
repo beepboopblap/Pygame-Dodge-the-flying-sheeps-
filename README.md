@@ -1,2 +1,9 @@
 # Pygame-Dodge-the-flying-sheeps-
-Dodge the flying sheeps
+
+*Still Work In Progress*
+
+A dodge the flying sheeps game made by beepboopblap.
+
+Created with the help of Mr Baumgarten's youtube playlist on games programming with pygame.
+Playlist: https://youtube.com/playlist?list=PLM-syYolLbsz5paY9gafMzMpWgv-h4ac6
+Channel: https://www.youtube.com/user/pbaumgarten
