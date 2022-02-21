@@ -12,6 +12,8 @@ Channel: https://www.youtube.com/user/pbaumgarten
 
 ***UPDATES***
 
+Feb 21 8:14pm (GMT + 8) - Collisions now creates a sound effect
+
 Feb 21 9:36am (GMT + 8) - Nerfed sheep collision hitbox with the player by 5%!
 
 Feb 21 9:16am (GMT + 8) - Added lives! each collision = lives - 1 (3 lives)
