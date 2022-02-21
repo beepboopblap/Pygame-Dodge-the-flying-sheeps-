@@ -8,6 +8,8 @@ import math
 SCREEN_HEIGHT = 900
 SCREEN_WIDTH = 690
 
+
+
 pygame.init()
 fps = pygame.time.Clock()
 window = pygame.display.set_mode((SCREEN_WIDTH,SCREEN_HEIGHT))
@@ -37,7 +39,7 @@ sheep_y1 = -10
 sheep_y2 = -4
 sheep_y3 = -7
 start_text = Calibri60.render("Press a key to begin!",1, red )
-
+lives = 3
 
 
 #transformations
@@ -128,7 +130,10 @@ while  not quit:
         controls = Calibri40.render("Use WASD to move", 1, red)
         window.blit(controls, (150, 300))
         window.blit(watch_out_label, (70, 200))
-    
+        lives_counter = Calibri40.render("Lives left:" + str(lives) , 1, red)
+        window.blit(lives_counter, (10,60))
+
+
         if sheep_y < y:
 
             window.blit(sheep_sprite, (sheep_x, sheep_y))
@@ -143,7 +148,7 @@ while  not quit:
             if collision: 
                 sheep_y = 0
                 sheep_x = random.randrange(0,x)
-
+                lives = lives - 1
 
 
 
@@ -158,11 +163,14 @@ while  not quit:
                 sheep_x1 = random.randrange(0,100)
                 sheep_y1 = 0
 
+
             collision = isCollision(sheep_x1, sheep_y1, player_x, player_y)
 
             if collision: 
                 sheep_y1 = 0
                 sheep_x1 = random.randrange(0,x)
+                lives = lives -1
+
 
         if sheep_y2 < y:
 
@@ -171,12 +179,14 @@ while  not quit:
             if sheep_y2 > 830:   
                 sheep_x2 = random.randrange(0,SCREEN_WIDTH)
                 sheep_y2 = 0
+                
 
             collision = isCollision(sheep_x2, sheep_y2, player_x, player_y)
 
             if collision: 
                 sheep_y2 = 0
                 sheep_x2 = random.randrange(0,x)
+                lives = lives - 1
         
     #update
         pygame.display.update()
