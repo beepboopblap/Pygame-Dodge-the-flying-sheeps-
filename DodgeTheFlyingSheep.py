@@ -1,3 +1,4 @@
+from calendar import c
 from turtle import window_width
 import pygame, random 
 from pygame.locals import * 
@@ -40,7 +41,7 @@ sheep_y2 = -4
 sheep_y3 = -7
 start_text = Calibri60.render("Press a key to begin!",1, red )
 lives = 3
-
+collision_sfx = mixer.Sound("spacebar_soundfx.mp3")
 
 #transformations
 
@@ -54,25 +55,25 @@ sheep_sprite4 = pygame.transform.scale(sheep_sprite, (140,140))
 #variables for keeping track of my game players etc.
 def isCollision(sheep_x, sheep_y, player_x, player_y):
     distance = math.sqrt((math.pow(player_x-sheep_x, 2)) + (math.pow(player_y - sheep_y, 2)))
-    if distance < 120:
+    if distance < 114:
         return True
     else: 
         return False
 def isCollision(sheep_x1, sheep_y1, player_x1, player_y1):
     distance = math.sqrt((math.pow(player_x1-sheep_x1, 2)) + (math.pow(player_y1 - sheep_y1, 2)))
-    if distance < 120:
+    if distance < 114:
         return True
     else: 
         return False
 def isCollision(sheep_x2, sheep_y2, player_x2, player_y2):
     distance = math.sqrt((math.pow(player_x2-sheep_x2, 2)) + (math.pow(player_y2 - sheep_y2, 2)))
-    if distance < 120:
+    if distance < 114:
         return True
     else: 
         return False
 def isCollision(sheep_x3, sheep_y3, player_x3, player_y3):
     distance = math.sqrt((math.pow(player_x3-sheep_x3, 2)) + (math.pow(player_y3 - sheep_y3, 2)))
-    if distance < 120:
+    if distance < 114:
         return True
     else: 
         return False
@@ -149,11 +150,7 @@ while  not quit:
                 sheep_y = 0
                 sheep_x = random.randrange(0,x)
                 lives = lives - 1
-
-
-
-
-
+                collision_sfx.play()
 
         if sheep_y1 < y:
 
@@ -170,7 +167,7 @@ while  not quit:
                 sheep_y1 = 0
                 sheep_x1 = random.randrange(0,x)
                 lives = lives -1
-
+                collision_sfx.play()
 
         if sheep_y2 < y:
 
@@ -187,10 +184,13 @@ while  not quit:
                 sheep_y2 = 0
                 sheep_x2 = random.randrange(0,x)
                 lives = lives - 1
-        
-    #update
+                collision_sfx.play()
         pygame.display.update()
-        fps.tick(9)       
+        fps.tick(9)
+
+    
+    #update
+               
 #loop over, game over
 pygame.quit()
 
