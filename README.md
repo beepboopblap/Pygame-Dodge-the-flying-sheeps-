@@ -12,6 +12,8 @@ Channel: https://www.youtube.com/user/pbaumgarten
 
 ***UPDATES***
 
+Feb 21 - Added Collision (no effect yet)
+
 Feb 20 5:10 (GMT + 8) - Multiple flying sheep
 
 Feb 20 - Added borders and instructions
