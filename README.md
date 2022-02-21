@@ -12,8 +12,10 @@ Channel: https://www.youtube.com/user/pbaumgarten
 
 ***UPDATES***
 
+Feb 21 9:16am (GMT + 8) - Added lives! each collision = lives - 1 (3 lives)
+
 Feb 21 - Added Collision (no effect yet)
 
-Feb 20 5:10 (GMT + 8) - Multiple flying sheep
+Feb 20 5:10pm (GMT + 8) - Multiple flying sheep
 
 Feb 20 - Added borders and instructions
