@@ -4,13 +4,15 @@
 
 A dodge the flying sheep game made by beepboopblap.
 
-Created with the help of Mr Baumgarten's youtube playlist on games programming with pygame.
+Created with the help of Mr Baumgarten's youtube playlist on programming with pygame.
 
 Playlist: https://youtube.com/playlist?list=PLM-syYolLbsz5paY9gafMzMpWgv-h4ac6
 
 Channel: https://www.youtube.com/user/pbaumgarten
 
 ***UPDATES***
+
+Feb 22 11:32am (GMT + 8) - Added credits to the main menu
 
 Feb 22 9:42am (GMT + 8) - Added a simple main menu
 
