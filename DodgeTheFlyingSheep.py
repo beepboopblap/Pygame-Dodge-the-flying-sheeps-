@@ -1,7 +1,11 @@
+from ast import Return
 from calendar import c
 from gc import callbacks
 from os import kill
+from tkinter import Button
 from turtle import window_width
+from unittest import TestResult
+from click import option
 import pygame, random
 from pygame.locals import *
 from pygame import mixer
@@ -46,6 +50,17 @@ start_text = Calibri60.render("Press a key to begin!", 1, red)
 lives = 3
 collision_sfx = mixer.Sound("spacebar_soundfx.mp3")
 game_over_text = Calibri60.render("Game Over", 1, red)
+
+
+start = True
+running = True
+in_game = False
+quit = False
+gameover = False
+player_x = 240
+player_y = 680
+
+
 # transformations
 
 player_sprite = pygame.transform.scale(player_sprite, (140, 140))
@@ -106,122 +121,149 @@ def isCollision(sheep_x3, sheep_y3, player_x3, player_y3):
 
 def game_over():
 
-    for character in all_sprites:
-        character.kill()
-
-    window.fill(yellow)
+    window.fill(white)
     window.blit(game_over_text, (300, 400))
 
-    pygame.display.update()
-    time.sleep(5)
 
-
-quit = False
-gameover = False
-player_x = 240
-player_y = 680
-
+point = 0
+start = True
 
 # main game loop
-while not quit:
+while running:
 
-    # process events
-    for event in pygame.event.get():
-        print(event)
-        if event.type == QUIT:
-            quit = True
-        elif event.type == KEYDOWN:
-            if event.key == ord("w"):
-                player_y = player_y - 40
-            if event.key == ord("s"):
-                player_y = player_y + 40
-            if event.key == ord("a"):
-                player_x = player_x - 40
-            if event.key == ord("d"):
-                player_x = player_x + 40
-        elif event.type == KEYUP:
-            if event.key == K_ESCAPE:
+    if start == True:
+        window.fill(white)
+
+        if point == 0:
+            start_text = Calibri60.render("Start", 1, red)
+            exit_text = Calibri40.render("Exit", 1, black)
+            main_menu = Calibri60.render("Main Menu", 1, blue)
+            options_text = Calibri40.render("Options", 1, black)
+            window.blit(start_text, (130, 450))
+            window.blit(exit_text, (430, 450))
+            window.blit(main_menu, (170, 100))
+            window.blit(options_text, (265, 800))
+
+        elif point == 1:
+            start_text = Calibri40.render("Start", 1, black)
+            exit_text = Calibri60.render("Exit", 1, red)
+            window.blit(start_text, (130, 450))
+            window.blit(exit_text, (430, 450))
+            window.blit(main_menu, (170, 100))
+
+        for event in pygame.event.get():
+            if event.type == QUIT:
                 pygame.quit()
+            elif event.type == KEYUP:
+                if event.key == K_RIGHT:
+                    point += 1
+                elif event.key == K_LEFT:
+                    point -= 1
+                elif event.key == K_RETURN:
+                    if point == 0:
+                        start = False
+                    elif point == 1:
+                        pygame.quit()
+        point = point % 2
+        pygame.display.update()
+    else:
 
-    # perform calculations
-    if player_x >= 599:
-        player_x = 599
-    if player_x <= -35:
-        player_x = -35
-    if player_y >= 760:
-        player_y = 760
-    if player_y <= 0:
-        player_y = 0
+        # process events
+        for event in pygame.event.get():
+            print(event)
+            if event.type == QUIT:
+                pygame.quit()
+            elif event.type == KEYDOWN:
+                if event.key == ord("w"):
+                    player_y = player_y - 40
+                if event.key == ord("s"):
+                    player_y = player_y + 40
+                if event.key == ord("a"):
+                    player_x = player_x - 40
+                if event.key == ord("d"):
+                    player_x = player_x + 40
+            elif event.type == KEYUP:
+                if event.key == K_ESCAPE:
+                    pygame.quit()
 
-    # draw graphics
-    window.fill(yellow)
+        # perform calculations
+        if player_x >= 599:
+            player_x = 599
+        if player_x <= -35:
+            player_x = -35
+        if player_y >= 760:
+            player_y = 760
+        if player_y <= 0:
+            player_y = 0
 
-    window.blit(player_sprite, (player_x, player_y))
-    pygame.draw.rect(window, black, (3, 3, 683, 890), 4)
-    watch_out_label = Calibri40.render("Watch out for flying sheep!", 1, blue)
-    controls = Calibri40.render("Use WASD to move", 1, blue)
-    window.blit(controls, (150, 300))
-    window.blit(watch_out_label, (70, 200))
-    lives_counter = Calibri40.render("Lives left:" + str(lives), 1, red)
-    window.blit(lives_counter, (10, 60))
+        # draw graphics
+        window.fill(yellow)
 
-    if lives == 0:
-        game_over()
+        window.blit(player_sprite, (player_x, player_y))
+        pygame.draw.rect(window, black, (3, 3, 683, 890), 4)
+        watch_out_label = Calibri40.render("Watch out for flying sheep!", 1, blue)
+        controls = Calibri40.render("Use WASD to move", 1, blue)
+        window.blit(controls, (150, 300))
+        window.blit(watch_out_label, (70, 200))
+        lives_counter = Calibri40.render("Lives left:" + str(lives), 1, red)
+        window.blit(lives_counter, (10, 60))
 
-    if sheep_y < y:
+        if lives == 0:
+            game_over()
 
-        window.blit(sheep_sprite, (sheep_x, sheep_y))
-        sheep_y = sheep_y + 20
-        if sheep_y > 830:
-            sheep_x = random.randrange(0, x)
-            sheep_y = 0
+        if sheep_y < y:
 
-        # Collision for sheep
-        collision = isCollision(sheep_x, sheep_y, player_x, player_y)
+            window.blit(sheep_sprite, (sheep_x, sheep_y))
+            sheep_y = sheep_y + 20
+            if sheep_y > 830:
+                sheep_x = random.randrange(0, x)
+                sheep_y = 0
 
-        if collision:
-            sheep_y = 0
-            sheep_x = random.randrange(0, x)
-            lives = lives - 1
-            collision_sfx.play()
+            # Collision for sheep
+            collision = isCollision(sheep_x, sheep_y, player_x, player_y)
 
-    if sheep_y1 < y:
+            if collision:
+                sheep_y = 0
+                sheep_x = random.randrange(0, x)
+                lives = lives - 1
+                collision_sfx.play()
 
-        window.blit(sheep_sprite1, (sheep_x1, sheep_y1))
-        sheep_y1 = sheep_y1 + 30
-        if sheep_y1 > 830:
-            sheep_x1 = random.randrange(0, 100)
-            sheep_y1 = 0
+        if sheep_y1 < y:
 
-        collision = isCollision(sheep_x1, sheep_y1, player_x, player_y)
+            window.blit(sheep_sprite1, (sheep_x1, sheep_y1))
+            sheep_y1 = sheep_y1 + 30
+            if sheep_y1 > 830:
+                sheep_x1 = random.randrange(0, 100)
+                sheep_y1 = 0
 
-        if collision:
-            sheep_y1 = 0
-            sheep_x1 = random.randrange(0, x)
-            lives = lives - 1
-            collision_sfx.play()
+            collision = isCollision(sheep_x1, sheep_y1, player_x, player_y)
 
-    if sheep_y2 < y:
+            if collision:
+                sheep_y1 = 0
+                sheep_x1 = random.randrange(0, x)
+                lives = lives - 1
+                collision_sfx.play()
 
-        window.blit(sheep_sprite2, (sheep_x2, sheep_y2))
-        sheep_y2 = sheep_y2 + random.randint(20, 60)
-        if sheep_y2 > 830:
-            sheep_x2 = random.randrange(0, SCREEN_WIDTH)
-            sheep_y2 = 0
+        if sheep_y2 < y:
 
-        collision = isCollision(sheep_x2, sheep_y2, player_x, player_y)
+            window.blit(sheep_sprite2, (sheep_x2, sheep_y2))
+            sheep_y2 = sheep_y2 + random.randint(20, 60)
+            if sheep_y2 > 830:
+                sheep_x2 = random.randrange(0, SCREEN_WIDTH)
+                sheep_y2 = 0
 
-        if collision:
-            sheep_y2 = 0
-            sheep_x2 = random.randrange(0, x)
-            lives = lives - 1
-            collision_sfx.play()
+            collision = isCollision(sheep_x2, sheep_y2, player_x, player_y)
 
-    pygame.display.update()
-    fps.tick(9)
+            if collision:
+                sheep_y2 = 0
+                sheep_x2 = random.randrange(0, x)
+                lives = lives - 1
+                collision_sfx.play()
 
+        pygame.display.update()
+        fps.tick(9)
 
-# update
+    # update
 
 # loop over, game over
 pygame.quit()
