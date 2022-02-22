@@ -127,7 +127,7 @@ def game_over():
 
 point = 0
 start = True
-
+options = False
 # main game loop
 while running:
 
@@ -138,11 +138,14 @@ while running:
             start_text = Calibri60.render("Start", 1, red)
             exit_text = Calibri40.render("Exit", 1, black)
             main_menu = Calibri60.render("Main Menu", 1, blue)
-            options_text = Calibri40.render("Options", 1, black)
+            credits_text = Calibri40.render("Made by", 1, black)
+            credits_name = Calibri60.render("beepboopblap", 1, red)
+            window.blit(credits_text, (140, 730))
+            window.blit(credits_name, (140, 780))
+
             window.blit(start_text, (130, 450))
             window.blit(exit_text, (430, 450))
             window.blit(main_menu, (170, 100))
-            window.blit(options_text, (265, 800))
 
         elif point == 1:
             start_text = Calibri40.render("Start", 1, black)
@@ -151,6 +154,10 @@ while running:
             window.blit(exit_text, (430, 450))
             window.blit(main_menu, (170, 100))
 
+            credits_text = Calibri40.render("Made by", 1, black)
+            credits_name = Calibri60.render("beepboopblap", 1, red)
+            window.blit(credits_text, (140, 730))
+            window.blit(credits_name, (140, 780))
         for event in pygame.event.get():
             if event.type == QUIT:
                 pygame.quit()
@@ -164,9 +171,11 @@ while running:
                         start = False
                     elif point == 1:
                         pygame.quit()
+
         point = point % 2
         pygame.display.update()
-    else:
+
+    elif start == False:
 
         # process events
         for event in pygame.event.get():
