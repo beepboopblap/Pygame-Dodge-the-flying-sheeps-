@@ -2,6 +2,7 @@ from ast import Return
 from calendar import c
 from gc import callbacks
 from os import kill
+from sysconfig import get_python_version
 from tkinter import Button
 from turtle import window_width
 from unittest import TestResult
@@ -119,15 +120,9 @@ def isCollision(sheep_x3, sheep_y3, player_x3, player_y3):
         return False
 
 
-def game_over():
-
-    window.fill(white)
-    window.blit(game_over_text, (300, 400))
-
-
 point = 0
 start = True
-options = False
+game_over = False
 # main game loop
 while running:
 
@@ -171,13 +166,28 @@ while running:
                 elif event.key == K_RETURN:
                     if point == 0:
                         start = False
+                        game = True
                     elif point == 1:
                         pygame.quit()
 
         point = point % 2
         pygame.display.update()
 
-    elif start == False:
+    elif game_over == True:
+        while lives <= 0:
+            for event in pygame.event.get():
+                if event.type == QUIT:
+                    pygame.quit()
+                elif event.type == KEYUP:
+                    if event.key == K_SPACE:
+                        game_over == False
+                        game == True
+
+            window.fill(white)
+            window.blit(game_over_text, (190, 400))
+            pygame.display.update()
+
+    elif game == True:
 
         # process events
         for event in pygame.event.get():
@@ -219,8 +229,8 @@ while running:
         lives_counter = Calibri40.render("Lives left:" + str(lives), 1, red)
         window.blit(lives_counter, (10, 60))
 
-        if lives == 0:
-            game_over()
+        if lives <= 0:
+            game_over = True
 
         if sheep_y < y:
 
@@ -271,8 +281,8 @@ while running:
                 lives = lives - 1
                 collision_sfx.play()
 
-        pygame.display.update()
-        fps.tick(9)
+    pygame.display.update()
+    fps.tick(9)
 
     # update
 
