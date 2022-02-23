@@ -12,6 +12,8 @@ Channel: https://www.youtube.com/user/pbaumgarten
 
 ***UPDATES***
 
+Feb 23 10:40am (GMT + 8) - Added a game over screen
+
 Feb 23 8:48am (GMT + 8) - Changed the main menu a bit
 
 Feb 22 11:32am (GMT + 8) - Added credits to the main menu
