@@ -1,9 +1,7 @@
-
 import pygame, random
 from pygame.locals import *
 from pygame import mixer
 import math
-
 
 
 SCREEN_HEIGHT = 900
@@ -72,7 +70,7 @@ all_sprites = [
 ]
 # variables for keeping track of my game players etc.
 
-#collision code
+# collision code
 def isCollision(sheep_x, sheep_y, player_x, player_y):
     distance = math.sqrt(
         (math.pow(player_x - sheep_x, 2)) + (math.pow(player_y - sheep_y, 2))
@@ -116,6 +114,8 @@ def isCollision(sheep_x3, sheep_y3, player_x3, player_y3):
 point = 0
 start = True
 game_over = False
+score = 0
+
 # main game loop
 while running:
 
@@ -174,7 +174,7 @@ while running:
                 elif event.type == KEYUP:
                     if event.key == K_SPACE:
                         game_over == False
-                        game == True 
+                        game == True
 
             window.fill(white)
             window.blit(game_over_text, (190, 400))
@@ -202,7 +202,7 @@ while running:
 
         # perform calculations
 
-        #code for borders
+        # code for borders
         if player_x >= 599:
             player_x = 599
         if player_x <= -35:
@@ -223,12 +223,13 @@ while running:
         window.blit(watch_out_label, (70, 200))
         lives_counter = Calibri40.render("Lives left:" + str(lives), 1, red)
         window.blit(lives_counter, (10, 60))
+        score_text = Calibri40.render("Score:" + str(score), 1, red)
+        window.blit(score_text, (10, 140))
 
         if lives <= 0:
             game_over = True
 
-
-        #sheep falling from the sky code
+        # sheep falling from the sky code
 
         if sheep_y < y:
 
@@ -237,6 +238,7 @@ while running:
             if sheep_y > 830:
                 sheep_x = random.randrange(0, x)
                 sheep_y = 0
+                score = score + 1
 
             # Collision for sheep
             collision = isCollision(sheep_x, sheep_y, player_x, player_y)
@@ -254,6 +256,7 @@ while running:
             if sheep_y1 > 830:
                 sheep_x1 = random.randrange(0, 100)
                 sheep_y1 = 0
+                score = score + 1
 
             collision = isCollision(sheep_x1, sheep_y1, player_x, player_y)
 
@@ -270,6 +273,7 @@ while running:
             if sheep_y2 > 830:
                 sheep_x2 = random.randrange(0, SCREEN_WIDTH)
                 sheep_y2 = 0
+                score = score + 1
 
             collision = isCollision(sheep_x2, sheep_y2, player_x, player_y)
 
