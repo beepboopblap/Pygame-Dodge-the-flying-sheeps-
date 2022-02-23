@@ -1,6 +1,6 @@
 # Pygame-Dodge-the-flying-sheeps-
 
-*Still Work In Progress*
+*Still a Work In Progress*
 
 A dodge the flying sheep game made by beepboopblap.
 
