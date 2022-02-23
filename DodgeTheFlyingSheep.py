@@ -39,6 +39,7 @@ sheep_y3 = -7
 start_text = Calibri60.render("Press a key to begin!", 1, red)
 lives = 3
 collision_sfx = mixer.Sound("spacebar_soundfx.mp3")
+hurt_sfx = mixer.Sound("hurt_sfx (mp3cut.net).mp3")
 game_over_text = Calibri60.render("Game Over", 1, red)
 
 
@@ -68,6 +69,8 @@ all_sprites = [
     sheep_sprite3,
     sheep_sprite4,
 ]
+
+
 # variables for keeping track of my game players etc.
 
 # collision code
@@ -170,7 +173,9 @@ while running:
         while lives <= 0:
             for event in pygame.event.get():
                 if event.type == QUIT:
+
                     pygame.quit()
+
                 elif event.type == KEYUP:
                     if event.key == K_SPACE:
                         game_over == False
@@ -248,6 +253,7 @@ while running:
                 sheep_x = random.randrange(0, x)
                 lives = lives - 1
                 collision_sfx.play()
+                hurt_sfx.play()
 
         if sheep_y1 < y:
 
@@ -265,6 +271,7 @@ while running:
                 sheep_x1 = random.randrange(0, x)
                 lives = lives - 1
                 collision_sfx.play()
+                hurt_sfx.play()
 
         if sheep_y2 < y:
 
@@ -282,6 +289,7 @@ while running:
                 sheep_x2 = random.randrange(0, x)
                 lives = lives - 1
                 collision_sfx.play()
+                hurt_sfx.play()
 
     pygame.display.update()
     fps.tick(11)
