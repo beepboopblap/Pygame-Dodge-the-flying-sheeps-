@@ -1,18 +1,9 @@
-from ast import Return
-from calendar import c
-from gc import callbacks
-from os import kill
-from sysconfig import get_python_version
-from tkinter import Button
-from turtle import window_width
-from unittest import TestResult
-from click import option
+
 import pygame, random
 from pygame.locals import *
 from pygame import mixer
 import math
-import time
-import sys
+
 
 
 SCREEN_HEIGHT = 900
@@ -80,6 +71,8 @@ all_sprites = [
     sheep_sprite4,
 ]
 # variables for keeping track of my game players etc.
+
+#collision code
 def isCollision(sheep_x, sheep_y, player_x, player_y):
     distance = math.sqrt(
         (math.pow(player_x - sheep_x, 2)) + (math.pow(player_y - sheep_y, 2))
@@ -181,7 +174,7 @@ while running:
                 elif event.type == KEYUP:
                     if event.key == K_SPACE:
                         game_over == False
-                        game == True
+                        game == True 
 
             window.fill(white)
             window.blit(game_over_text, (190, 400))
@@ -208,6 +201,8 @@ while running:
                     pygame.quit()
 
         # perform calculations
+
+        #code for borders
         if player_x >= 599:
             player_x = 599
         if player_x <= -35:
@@ -231,6 +226,9 @@ while running:
 
         if lives <= 0:
             game_over = True
+
+
+        #sheep falling from the sky code
 
         if sheep_y < y:
 
@@ -282,7 +280,7 @@ while running:
                 collision_sfx.play()
 
     pygame.display.update()
-    fps.tick(9)
+    fps.tick(11)
 
     # update
 
