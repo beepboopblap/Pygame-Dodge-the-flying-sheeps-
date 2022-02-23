@@ -12,6 +12,8 @@ Channel: https://www.youtube.com/user/pbaumgarten
 
 ***UPDATES***
 
+Feb 23 8:48am (GMT + 8) - Changed the main menu a bit
+
 Feb 22 11:32am (GMT + 8) - Added credits to the main menu
 
 Feb 22 9:42am (GMT + 8) - Added a simple main menu
