@@ -12,6 +12,8 @@ Channel: https://www.youtube.com/user/pbaumgarten
 
 ***UPDATES***
 
+Feb 23 6:18pm (GMT + 8) - Changed collision_sfx
+
 Feb 23 1:54pm (GMT + 8) - Score counter! each sheep dodged = score + 1
 
 Feb 23 10:40am (GMT + 8) - Added a game over screen
