@@ -123,7 +123,7 @@ score = 0
 while running:
 
     if start == True:
-        window.fill(white)
+        window.fill(yellow)
 
         if point == 0:
             start_text = Calibri60.render("Start", 1, red)
@@ -170,20 +170,20 @@ while running:
         pygame.display.update()
 
     elif game_over == True:
-        while lives <= 0:
-            for event in pygame.event.get():
-                if event.type == QUIT:
+        window.fill(yellow)
+        window.blit(game_over_text, (190, 400))
 
-                    pygame.quit()
+        for event in pygame.event.get():
+            if event.type == QUIT:
 
-                elif event.type == KEYUP:
-                    if event.key == K_SPACE:
-                        game_over == False
-                        game == True
+                pygame.quit()
 
-            window.fill(white)
-            window.blit(game_over_text, (190, 400))
-            pygame.display.update()
+            elif event.type == KEYUP:
+                if event.key == ord("r"):
+                    game_over == False
+                    game == True
+
+        pygame.display.update()
 
     elif game == True:
 
@@ -232,6 +232,7 @@ while running:
         window.blit(score_text, (10, 140))
 
         if lives <= 0:
+            game = False
             game_over = True
 
         # sheep falling from the sky code
@@ -244,6 +245,18 @@ while running:
                 sheep_x = random.randrange(0, x)
                 sheep_y = 0
                 score = score + 1
+                if score == 50:
+                    lives = lives + 1
+                elif score == 100:
+                    lives = lives + 1
+                elif score == 150:
+                    lives = lives + 1
+                elif score == 200:
+                    lives = lives + 1
+                elif score == 250:
+                    lives = lives + 1
+                elif score == 300:
+                    lives = lives + 1
 
             # Collision for sheep
             collision = isCollision(sheep_x, sheep_y, player_x, player_y)
@@ -263,6 +276,18 @@ while running:
                 sheep_x1 = random.randrange(0, 100)
                 sheep_y1 = 0
                 score = score + 1
+                if score == 50:
+                    lives = lives + 1
+                elif score == 100:
+                    lives = lives + 1
+                elif score == 150:
+                    lives = lives + 1
+                elif score == 200:
+                    lives = lives + 1
+                elif score == 250:
+                    lives = lives + 1
+                elif score == 300:
+                    lives = lives + 1
 
             collision = isCollision(sheep_x1, sheep_y1, player_x, player_y)
 
@@ -281,6 +306,18 @@ while running:
                 sheep_x2 = random.randrange(0, SCREEN_WIDTH)
                 sheep_y2 = 0
                 score = score + 1
+                if score == 50:
+                    lives = lives + 1
+                elif score == 100:
+                    lives = lives + 1
+                elif score == 150:
+                    lives = lives + 1
+                elif score == 200:
+                    lives = lives + 1
+                elif score == 250:
+                    lives = lives + 1
+                elif score == 300:
+                    lives = lives + 1
 
             collision = isCollision(sheep_x2, sheep_y2, player_x, player_y)
 
