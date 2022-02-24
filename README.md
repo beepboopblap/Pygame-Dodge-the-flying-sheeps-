@@ -12,7 +12,7 @@ Channel: https://www.youtube.com/user/pbaumgarten
 
 ***UPDATES***
 
-(the game is basically complete but I might add updates from time to time)
+(The game is basically complete but I might add updates from time to time)
 
 Feb 24 10:36am (GMT + 8) - Every 50 score = lives + 1 (capped at 300 score)
 
