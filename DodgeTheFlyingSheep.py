@@ -304,7 +304,7 @@ while running:
                 collision_sfx.play()
                 hurt_sfx.play()
 
-        if score == 3:
+        if score == 50:
             hearts = True
         elif score == 100:
             hearts = True
