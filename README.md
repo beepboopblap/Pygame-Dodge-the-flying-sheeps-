@@ -14,6 +14,8 @@ Channel: https://www.youtube.com/user/pbaumgarten
 
 (The game is basically complete but I might add updates from time to time)
 
+Feb 25 5:57pm (GMT + 8) - Added hearts dropping now (instead of instant + 1 life after 50 score)
+
 Feb 24 10:36am (GMT + 8) - Every 50 score = lives + 1 (capped at 300 score)
 
 Feb 23 6:18pm (GMT + 8) - Changed collision_sfx
