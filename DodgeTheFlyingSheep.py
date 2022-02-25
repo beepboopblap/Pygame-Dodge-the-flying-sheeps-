@@ -1,3 +1,4 @@
+from pickletools import pyfloat
 import pygame, random
 from pygame.locals import *
 from pygame import mixer
@@ -196,7 +197,7 @@ while running:
                 game_easy_text = Calibri60.render("Easy", 1, green)
                 game_normal_text = Calibri40.render("Normal", 1, black)
                 game_hard_text = Calibri40.render("Hard", 1, black)
-                game_impossible_text = Calibri40.render("Hell", 1, black)
+                game_impossible_text = Calibri40.render("Insanity", 1, black)
 
                 window.blit(game_easy_text, (270, 300))
                 window.blit(game_normal_text, (270, 370))
@@ -206,7 +207,7 @@ while running:
                 game_easy_text = Calibri40.render("Easy", 1, black)
                 game_normal_text = Calibri60.render("Normal", 1, blue)
                 game_hard_text = Calibri40.render("Hard", 1, black)
-                game_impossible_text = Calibri40.render("Hell", 1, black)
+                game_impossible_text = Calibri40.render("Insanity", 1, black)
 
                 window.blit(game_easy_text, (270, 300))
                 window.blit(game_normal_text, (270, 370))
@@ -217,7 +218,7 @@ while running:
                 game_easy_text = Calibri40.render("Easy", 1, black)
                 game_normal_text = Calibri40.render("Normal", 1, black)
                 game_hard_text = Calibri60.render("Hard", 1, red)
-                game_impossible_text = Calibri40.render("Hell", 1, black)
+                game_impossible_text = Calibri40.render("Insanity", 1, black)
 
                 window.blit(game_easy_text, (270, 300))
                 window.blit(game_normal_text, (270, 370))
@@ -227,7 +228,7 @@ while running:
                 game_easy_text = Calibri40.render("Easy", 1, black)
                 game_normal_text = Calibri40.render("Normal", 1, black)
                 game_hard_text = Calibri40.render("Hard", 1, black)
-                game_impossible_text = Calibri60.render("Hell", 1, brown)
+                game_impossible_text = Calibri60.render("Insanity", 1, brown)
 
                 window.blit(game_easy_text, (270, 300))
                 window.blit(game_normal_text, (270, 370))
