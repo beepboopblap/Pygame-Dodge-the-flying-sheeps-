@@ -1,3 +1,4 @@
+from pickletools import pyfloat
 import pygame, random
 from pygame.locals import *
 from pygame import mixer
@@ -26,20 +27,25 @@ white = (255, 255, 255)
 Calibri60 = pygame.font.SysFont("Calibri", 60)
 Calibri40 = pygame.font.SysFont("Calibri", 40)
 player_sprite = pygame.image.load("player_sprite.png").convert_alpha()
-sheep_sprite = pygame.image.load("sheep_sprite.png").convert_alpha()
+sheep_sprite = pygame.image.load("sheep_sprite (1).png").convert_alpha()
+heart_sprite = pygame.image.load("heart_sprite_new.png").convert_alpha()
 sheep_speed = -5
 sheep_x = 104
 sheep_x1 = 40
 sheep_x2 = 13
 sheep_x3 = 79
+heart_x = 29
 sheep_y = -17
 sheep_y1 = -10
 sheep_y2 = -4
 sheep_y3 = -7
+heart_y = -5
+
 start_text = Calibri60.render("Press a key to begin!", 1, red)
 lives = 3
 collision_sfx = mixer.Sound("spacebar_soundfx.mp3")
 hurt_sfx = mixer.Sound("hurt_sfx (mp3cut.net).mp3")
+healing_sfx = mixer.Sound("healing_sfx.mp3")
 game_over_text = Calibri60.render("Game Over", 1, red)
 
 
@@ -48,12 +54,14 @@ running = True
 in_game = False
 quit = False
 gameover = False
+hearts = False
 player_x = 240
 player_y = 680
 
 
 # transformations
 
+heart_sprite = pygame.transform.scale(heart_sprite, (140, 140))
 player_sprite = pygame.transform.scale(player_sprite, (140, 140))
 sheep_sprite = pygame.transform.scale(sheep_sprite, (140, 140))
 sheep_sprite1 = pygame.transform.scale(sheep_sprite, (140, 140))
@@ -68,6 +76,7 @@ all_sprites = [
     sheep_sprite2,
     sheep_sprite3,
     sheep_sprite4,
+    heart_sprite,
 ]
 
 
@@ -119,6 +128,7 @@ start = True
 game_over = False
 score = 0
 
+
 # main game loop
 while running:
 
@@ -133,18 +143,19 @@ while running:
             credits_name = Calibri60.render("beepboopblap", 1, red)
             window.blit(credits_text, (140, 730))
             window.blit(credits_name, (140, 780))
-
-            window.blit(start_text, (290, 400))
-            window.blit(exit_text, (290, 490))
+            window.blit(player_sprite, (80, 200))
+            window.blit(start_text, (270, 400))
+            window.blit(exit_text, (270, 490))
             window.blit(main_menu, (170, 100))
+            window.blit(sheep_sprite, (450, 200))
 
         elif point == 1:
             start_text = Calibri40.render("Start", 1, black)
             exit_text = Calibri60.render("Exit", 1, red)
-            window.blit(start_text, (290, 400))
-            window.blit(exit_text, (290, 490))
+            window.blit(start_text, (270, 400))
+            window.blit(exit_text, (270, 490))
             window.blit(main_menu, (170, 100))
-
+            window.blit(player_sprite, (80, 200))
             credits_text = Calibri40.render("Made by", 1, black)
             credits_name = Calibri60.render("beepboopblap", 1, red)
             window.blit(credits_text, (140, 730))
@@ -161,6 +172,7 @@ while running:
                     collision_sfx.play()
                 elif event.key == K_RETURN:
                     if point == 0:
+                        collision_sfx.play()
                         start = False
                         game = True
                     elif point == 1:
@@ -245,18 +257,6 @@ while running:
                 sheep_x = random.randrange(0, x)
                 sheep_y = 0
                 score = score + 1
-                if score == 50:
-                    lives = lives + 1
-                elif score == 100:
-                    lives = lives + 1
-                elif score == 150:
-                    lives = lives + 1
-                elif score == 200:
-                    lives = lives + 1
-                elif score == 250:
-                    lives = lives + 1
-                elif score == 300:
-                    lives = lives + 1
 
             # Collision for sheep
             collision = isCollision(sheep_x, sheep_y, player_x, player_y)
@@ -276,18 +276,6 @@ while running:
                 sheep_x1 = random.randrange(0, 100)
                 sheep_y1 = 0
                 score = score + 1
-                if score == 50:
-                    lives = lives + 1
-                elif score == 100:
-                    lives = lives + 1
-                elif score == 150:
-                    lives = lives + 1
-                elif score == 200:
-                    lives = lives + 1
-                elif score == 250:
-                    lives = lives + 1
-                elif score == 300:
-                    lives = lives + 1
 
             collision = isCollision(sheep_x1, sheep_y1, player_x, player_y)
 
@@ -306,18 +294,6 @@ while running:
                 sheep_x2 = random.randrange(0, SCREEN_WIDTH)
                 sheep_y2 = 0
                 score = score + 1
-                if score == 50:
-                    lives = lives + 1
-                elif score == 100:
-                    lives = lives + 1
-                elif score == 150:
-                    lives = lives + 1
-                elif score == 200:
-                    lives = lives + 1
-                elif score == 250:
-                    lives = lives + 1
-                elif score == 300:
-                    lives = lives + 1
 
             collision = isCollision(sheep_x2, sheep_y2, player_x, player_y)
 
@@ -327,6 +303,36 @@ while running:
                 lives = lives - 1
                 collision_sfx.play()
                 hurt_sfx.play()
+
+        if score == 3:
+            hearts = True
+        elif score == 100:
+            hearts = True
+        elif score == 150:
+            hearts = True
+        elif score == 200:
+            hearts = True
+        elif score == 250:
+            hearts = True
+        elif score == 300:
+            hearts = True
+
+        elif hearts == True:
+            window.blit(heart_sprite, (heart_x, heart_y))
+            heart_y = heart_y + 10
+            if heart_y > 830:
+                heart_x = random.randrange(0, SCREEN_WIDTH)
+                heart_y = 0
+
+            collision = isCollision(heart_x, heart_y, player_x, player_y)
+
+            if collision:
+                heart_y = 0
+                heart_x = 0
+                lives = lives + 1
+                healing_sfx.play()
+
+                hearts = False
 
     pygame.display.update()
     fps.tick(11)
