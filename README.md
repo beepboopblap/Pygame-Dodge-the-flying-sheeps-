@@ -14,6 +14,8 @@ Channel: https://www.youtube.com/user/pbaumgarten
 
 (The game is basically complete but I might add updates from time to time)
 
+Feb 26 7:33pm (GMT + 8) - Added a label to show the difficulty you are currently playing in
+
 Feb 26 6:49pm (GMT + 8) - Added a "Random" difficulty
 
 Feb 25 8:41pm (GMT + 8) - NEW DIFFICULTY MODES (Easy,Normal,Hard,Insanity)
