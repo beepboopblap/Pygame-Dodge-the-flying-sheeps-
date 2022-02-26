@@ -3,6 +3,7 @@ import pygame, random
 from pygame.locals import *
 from pygame import mixer
 import math
+import sys
 
 
 SCREEN_HEIGHT = 900
@@ -25,8 +26,10 @@ yellow = (255, 255, 0)
 black = (0, 0, 0)
 white = (255, 255, 255)
 brown = (165, 42, 42)
+pink = (247, 49, 188)
 Calibri60 = pygame.font.SysFont("Calibri", 60)
 Calibri40 = pygame.font.SysFont("Calibri", 40)
+pixel40 = pygame.font.SysFont("ARCADECLASSIC.TTF", 40)
 player_sprite = pygame.image.load("player_sprite.png").convert_alpha()
 sheep_sprite = pygame.image.load("sheep_sprite (1).png").convert_alpha()
 heart_sprite = pygame.image.load("heart_sprite_new.png").convert_alpha()
@@ -165,6 +168,7 @@ while running:
             credits_name = Calibri60.render("beepboopblap", 1, red)
             window.blit(credits_text, (140, 730))
             window.blit(credits_name, (140, 780))
+            window.blit(sheep_sprite, (450, 200))
         for event in pygame.event.get():
             if event.type == QUIT:
                 pygame.quit()
@@ -180,7 +184,7 @@ while running:
                         collision_sfx.play()
                         start = False
                         levels = True
-                        
+
                     elif point == 1:
                         pygame.quit()
 
@@ -192,50 +196,81 @@ while running:
         while levels == True:
             window.fill(yellow)
 
-
             if point == 0:
                 game_easy_text = Calibri60.render("Easy", 1, green)
                 game_normal_text = Calibri40.render("Normal", 1, black)
                 game_hard_text = Calibri40.render("Hard", 1, black)
                 game_impossible_text = Calibri40.render("Insanity", 1, black)
+                difficulty_label = Calibri60.render("Select Difficulty", 1, blue)
+                game_random_text = Calibri40.render("??Random??", 1, black)
 
                 window.blit(game_easy_text, (270, 300))
                 window.blit(game_normal_text, (270, 370))
                 window.blit(game_hard_text, (270, 440))
                 window.blit(game_impossible_text, (270, 510))
+                window.blit(difficulty_label, (130, 100))
+                window.blit(game_random_text, (270, 580))
             elif point == 1:
                 game_easy_text = Calibri40.render("Easy", 1, black)
                 game_normal_text = Calibri60.render("Normal", 1, blue)
                 game_hard_text = Calibri40.render("Hard", 1, black)
                 game_impossible_text = Calibri40.render("Insanity", 1, black)
+                difficulty_label = Calibri60.render("Select Difficulty", 1, blue)
+                game_random_text = Calibri40.render("??Random??", 1, black)
 
                 window.blit(game_easy_text, (270, 300))
                 window.blit(game_normal_text, (270, 370))
                 window.blit(game_hard_text, (270, 440))
                 window.blit(game_impossible_text, (270, 510))
+                window.blit(difficulty_label, (130, 100))
+                window.blit(game_random_text, (270, 580))
 
             elif point == 2:
                 game_easy_text = Calibri40.render("Easy", 1, black)
                 game_normal_text = Calibri40.render("Normal", 1, black)
                 game_hard_text = Calibri60.render("Hard", 1, red)
                 game_impossible_text = Calibri40.render("Insanity", 1, black)
+                difficulty_label = Calibri60.render("Select Difficulty", 1, blue)
+                game_random_text = Calibri40.render("??Random??", 1, black)
 
                 window.blit(game_easy_text, (270, 300))
                 window.blit(game_normal_text, (270, 370))
                 window.blit(game_hard_text, (270, 440))
                 window.blit(game_impossible_text, (270, 510))
+                window.blit(difficulty_label, (130, 100))
+                window.blit(game_random_text, (270, 580))
+
             elif point == 3:
                 game_easy_text = Calibri40.render("Easy", 1, black)
                 game_normal_text = Calibri40.render("Normal", 1, black)
                 game_hard_text = Calibri40.render("Hard", 1, black)
                 game_impossible_text = Calibri60.render("Insanity", 1, brown)
+                difficulty_label = Calibri60.render("Select Difficulty", 1, blue)
+                game_random_text = Calibri40.render("??Random??", 1, black)
 
                 window.blit(game_easy_text, (270, 300))
                 window.blit(game_normal_text, (270, 370))
                 window.blit(game_hard_text, (270, 440))
                 window.blit(game_impossible_text, (270, 510))
+                window.blit(difficulty_label, (130, 100))
+                window.blit(game_random_text, (270, 580))
 
-            
+            elif point == 4:
+
+                game_easy_text = Calibri40.render("Easy", 1, black)
+                game_normal_text = Calibri40.render("Normal", 1, black)
+                game_hard_text = Calibri40.render("Hard", 1, black)
+                game_impossible_text = Calibri40.render("Insanity", 1, black)
+                difficulty_label = Calibri60.render("Select Difficulty", 1, blue)
+                game_random_text = Calibri60.render("??Random??", 1, pink)
+
+                window.blit(game_easy_text, (270, 300))
+                window.blit(game_normal_text, (270, 370))
+                window.blit(game_hard_text, (270, 440))
+                window.blit(game_impossible_text, (270, 510))
+                window.blit(difficulty_label, (130, 100))
+                window.blit(game_random_text, (270, 580))
+
             for event in pygame.event.get():
                 if event.type == QUIT:
                     pygame.quit()
@@ -261,26 +296,37 @@ while running:
                         elif point == 3:
                             levels = False
                             game_impossible = True
+                        elif point == 4:
+                            random_difficulty_chooser = random.randint(1, 4)
+                            print(random_difficulty_chooser)
+                            if random_difficulty_chooser == 1:
+                                levels = False
+                                game_easy = True
+                            elif random_difficulty_chooser == 2:
+                                levels = False
+                                game_normal = True
+                            elif random_difficulty_chooser == 3:
+                                levels = False
+                                game_hard = True
+                            elif random_difficulty_chooser == 4:
+                                levels = False
+                                game_impossible = True
 
-            point = point % 4
+            point = point % 5
             pygame.display.update()
 
-
     elif game_over == True:
+
         window.fill(yellow)
         window.blit(game_over_text, (190, 400))
         score_text = Calibri40.render("Score:" + str(score), 1, red)
         window.blit(score_text, (280, 180))
+        main_menu_label = Calibri40.render("Press 'm' For Main Menu", 1, blue)
 
         for event in pygame.event.get():
             if event.type == QUIT:
 
                 pygame.quit()
-
-            elif event.type == KEYUP:
-                if event.key == ord("r"):
-                    game_over == False
-                    game == True
 
         pygame.display.update()
 
@@ -400,7 +446,6 @@ while running:
             hearts = True
         elif score == 175:
             hearts = True
-        
 
         elif hearts == True:
             window.blit(heart_sprite, (heart_x, heart_y))
@@ -418,7 +463,6 @@ while running:
                 healing_sfx.play()
 
                 hearts = False
-
 
     elif game_normal == True:
 
@@ -558,7 +602,7 @@ while running:
                 hearts = False
 
     elif game_hard == True:
-        
+
         for event in pygame.event.get():
             print(event)
             if event.type == QUIT:
@@ -708,10 +752,11 @@ while running:
                 healing_sfx.play()
 
                 hearts = False
+
     elif game_impossible == True:
 
         mode_text = Calibri60.render("Mode: Impossible", 1, brown)
-        window.blit(mode_text, (0,0))
+        window.blit(mode_text, (0, 0))
 
         lives = 1
 
@@ -759,8 +804,6 @@ while running:
         window.blit(lives_counter, (10, 60))
         score_text = Calibri40.render("Score:" + str(score), 1, red)
         window.blit(score_text, (10, 140))
-
-        
 
         # sheep falling from the sky code
 
@@ -845,13 +888,10 @@ while running:
                 game_over = True
                 game_impossible = False
 
-
-        
-        
+    # update
     pygame.display.update()
     fps.tick(11)
 
-    # update
 
 # loop over, game over
 pygame.quit()
