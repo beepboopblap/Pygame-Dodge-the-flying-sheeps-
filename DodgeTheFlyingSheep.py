@@ -374,6 +374,8 @@ while running:
         window.blit(lives_counter, (10, 60))
         score_text = Calibri40.render("Score:" + str(score), 1, red)
         window.blit(score_text, (10, 140))
+        difficulty_text = Calibri40.render("Difficulty: Easy", 1, green)
+        window.blit(difficulty_text, (300, 50))
 
         if lives <= 0:
             game = False
@@ -509,6 +511,8 @@ while running:
         window.blit(lives_counter, (10, 60))
         score_text = Calibri40.render("Score:" + str(score), 1, red)
         window.blit(score_text, (10, 140))
+        difficulty_text = Calibri40.render("Difficulty: Normal", 1, blue)
+        window.blit(difficulty_text, (285, 50))
 
         if lives <= 0:
             game = False
@@ -645,6 +649,8 @@ while running:
         window.blit(lives_counter, (10, 60))
         score_text = Calibri40.render("Score:" + str(score), 1, red)
         window.blit(score_text, (10, 140))
+        difficulty_text = Calibri40.render("Difficulty: Hard", 1, red)
+        window.blit(difficulty_text, (300, 50))
 
         if lives <= 0:
             game = False
@@ -804,6 +810,8 @@ while running:
         window.blit(lives_counter, (10, 60))
         score_text = Calibri40.render("Score:" + str(score), 1, red)
         window.blit(score_text, (10, 140))
+        difficulty_text = Calibri40.render("Difficulty: Insanity", 1, brown)
+        window.blit(difficulty_text, (280, 50))
 
         # sheep falling from the sky code
 
