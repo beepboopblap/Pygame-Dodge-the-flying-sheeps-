@@ -10,7 +10,7 @@ Playlist: https://youtube.com/playlist?list=PLM-syYolLbsz5paY9gafMzMpWgv-h4ac6
 
 Channel: https://www.youtube.com/user/pbaumgarten
 
-***UPDATES***
+****UPDATES****
 
 (The game is basically complete but I might add updates from time to time)
 
