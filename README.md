@@ -14,6 +14,8 @@ Channel: https://www.youtube.com/user/pbaumgarten
 
 (The game is basically complete but I might add updates from time to time)
 
+Feb 26 6:49pm (GMT + 8) - Added a "Random" difficulty
+
 Feb 25 8:41pm (GMT + 8) - NEW DIFFICULTY MODES (Easy,Normal,Hard,Insanity)
 
 Feb 25 5:57pm (GMT + 8) - Added hearts dropping now (instead of instant + 1 life after 50 score)
