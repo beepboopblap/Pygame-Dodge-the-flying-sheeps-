@@ -3,12 +3,9 @@ import pygame, random
 from pygame.locals import *
 from pygame import mixer
 import math
-import sys
-
 
 SCREEN_HEIGHT = 900
 SCREEN_WIDTH = 690
-
 
 pygame.init()
 fps = pygame.time.Clock()
@@ -64,7 +61,7 @@ gameover = False
 hearts = False
 player_x = 240
 player_y = 680
-
+pause = False
 
 # transformations
 
@@ -85,8 +82,6 @@ all_sprites = [
     sheep_sprite4,
     heart_sprite,
 ]
-
-
 # variables for keeping track of my game players etc.
 
 # collision code
@@ -109,7 +104,6 @@ def isCollision(sheep_x1, sheep_y1, player_x1, player_y1):
     else:
         return False
 
-
 def isCollision(sheep_x2, sheep_y2, player_x2, player_y2):
     distance = math.sqrt(
         (math.pow(player_x2 - sheep_x2, 2)) + (math.pow(player_y2 - sheep_y2, 2))
@@ -119,7 +113,6 @@ def isCollision(sheep_x2, sheep_y2, player_x2, player_y2):
     else:
         return False
 
-
 def isCollision(sheep_x3, sheep_y3, player_x3, player_y3):
     distance = math.sqrt(
         (math.pow(player_x3 - sheep_x3, 2)) + (math.pow(player_y3 - sheep_y3, 2))
@@ -128,7 +121,6 @@ def isCollision(sheep_x3, sheep_y3, player_x3, player_y3):
         return True
     else:
         return False
-
 
 point = 0
 start = True
@@ -200,7 +192,7 @@ while running:
                 game_easy_text = Calibri60.render("Easy", 1, green)
                 game_normal_text = Calibri40.render("Normal", 1, black)
                 game_hard_text = Calibri40.render("Hard", 1, black)
-                game_impossible_text = Calibri40.render("Insanity", 1, black)
+                game_impossible_text = Calibri40.render("Insane", 1, black)
                 difficulty_label = Calibri60.render("Select Difficulty", 1, blue)
                 game_random_text = Calibri40.render("??Random??", 1, black)
 
@@ -214,7 +206,7 @@ while running:
                 game_easy_text = Calibri40.render("Easy", 1, black)
                 game_normal_text = Calibri60.render("Normal", 1, blue)
                 game_hard_text = Calibri40.render("Hard", 1, black)
-                game_impossible_text = Calibri40.render("Insanity", 1, black)
+                game_impossible_text = Calibri40.render("Insane", 1, black)
                 difficulty_label = Calibri60.render("Select Difficulty", 1, blue)
                 game_random_text = Calibri40.render("??Random??", 1, black)
 
@@ -229,7 +221,7 @@ while running:
                 game_easy_text = Calibri40.render("Easy", 1, black)
                 game_normal_text = Calibri40.render("Normal", 1, black)
                 game_hard_text = Calibri60.render("Hard", 1, red)
-                game_impossible_text = Calibri40.render("Insanity", 1, black)
+                game_impossible_text = Calibri40.render("Insane", 1, black)
                 difficulty_label = Calibri60.render("Select Difficulty", 1, blue)
                 game_random_text = Calibri40.render("??Random??", 1, black)
 
@@ -244,7 +236,7 @@ while running:
                 game_easy_text = Calibri40.render("Easy", 1, black)
                 game_normal_text = Calibri40.render("Normal", 1, black)
                 game_hard_text = Calibri40.render("Hard", 1, black)
-                game_impossible_text = Calibri60.render("Insanity", 1, brown)
+                game_impossible_text = Calibri60.render("Insane", 1, brown)
                 difficulty_label = Calibri60.render("Select Difficulty", 1, blue)
                 game_random_text = Calibri40.render("??Random??", 1, black)
 
@@ -260,7 +252,7 @@ while running:
                 game_easy_text = Calibri40.render("Easy", 1, black)
                 game_normal_text = Calibri40.render("Normal", 1, black)
                 game_hard_text = Calibri40.render("Hard", 1, black)
-                game_impossible_text = Calibri40.render("Insanity", 1, black)
+                game_impossible_text = Calibri40.render("Insane", 1, black)
                 difficulty_label = Calibri60.render("Select Difficulty", 1, blue)
                 game_random_text = Calibri60.render("??Random??", 1, pink)
 
@@ -623,6 +615,19 @@ while running:
             elif event.type == KEYUP:
                 if event.key == K_ESCAPE:
                     pygame.quit()
+                elif event.key == K_SPACE:
+                    pause = True
+                    if pause == True:
+                        pause_label = Calibri40.render("Paused", 1, black)
+                        press_space = Calibri40.render("Press Space To Continue", 1, red)
+                        pygame.time.delay(30000000000)
+                        window.blit(pause_label, (290,650))
+                        window.blit(press_space, (290, 750))
+                        if event.key == K_SPACE:
+                            pause = False
+                    elif pause == False:
+                        pygame.time.delay(0)
+                       
 
         # perform calculations
 
@@ -810,7 +815,7 @@ while running:
         window.blit(lives_counter, (10, 60))
         score_text = Calibri40.render("Score:" + str(score), 1, red)
         window.blit(score_text, (10, 140))
-        difficulty_text = Calibri40.render("Difficulty: Insanity", 1, brown)
+        difficulty_text = Calibri40.render("Difficulty: Insane", 1, brown)
         window.blit(difficulty_text, (280, 50))
 
         # sheep falling from the sky code
