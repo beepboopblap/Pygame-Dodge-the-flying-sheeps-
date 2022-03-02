@@ -4,7 +4,7 @@
 
 A dodge the flying sheep game made by beepboopblap.
 
-Created with the help of Mr Baumgarten's youtube playlist on programming with pygame.
+Created with the help of Mr Baumgarten's Youtube playlist on programming with pygame.
 
 Playlist: https://youtube.com/playlist?list=PLM-syYolLbsz5paY9gafMzMpWgv-h4ac6
 
@@ -18,7 +18,7 @@ Feb 26 7:33pm (GMT + 8) - Added a label to show the difficulty you are currently
 
 Feb 26 6:49pm (GMT + 8) - Added a "Random" difficulty
 
-Feb 25 8:41pm (GMT + 8) - NEW DIFFICULTY MODES (Easy,Normal,Hard,Insanity)
+Feb 25 8:41pm (GMT + 8) - NEW DIFFICULTY MODES (Easy,Normal,Hard,Insane)
 
 Feb 25 5:57pm (GMT + 8) - Added hearts dropping now (instead of instant + 1 life after 50 score)
 
